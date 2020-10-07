@@ -1,20 +1,13 @@
 const express=require('express')
-
 const router=express.Router()
-
 const mongoose=require('mongoose')
-
 const User=mongoose.model('User')
-
 const bcrypt=require('bcryptjs')
-
 const jwt=require('jsonwebtoken')
-
 const {JWT_SECRET}=require('../keys')
-
 const requireLogin=require('../middleware/requireLogin')
 
-let userExists=false
+// let userExists=false
 
 router.get('/',(req,res)=>{
 res.send("hello")
@@ -33,7 +26,7 @@ router.post('/signup',(req,res)=>{
     User.findOne({email:email}).then(
         (savedUser)=>{
             if(savedUser){
-                userExists=true
+                // userExists=true
                 return res.status(422).json({error:"user already exists with same email"})
             }
             bcrypt.hash(password,12)
