@@ -25,3 +25,15 @@ a{
   height:200px;
   margin:20px;
 }
+.home-card{
+  max-width: 60vw;
+  margin: 20px auto;
+}
+.create-post{
+  margin:20px auto;
+  max-width: 50vw;
+  padding:20px;
+}
+.card-image img{
+  max-height: 500px;
+}
