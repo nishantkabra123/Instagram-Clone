@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useContext} from 'react';
 import {UserContext} from '../../App'
+import {Link} from 'react-router-dom'
 
 const Home =()=>{
     const [data,setData]=useState([])
@@ -131,17 +132,17 @@ const Home =()=>{
         <div className="home">
             {                
                 data.map(item=>{
-                    console.log("data is",data)
+                    // console.log("data is",data)
                     return (
                         <div className="card home-card" key={item._id}>
 
-                    <h5>{item.postedBy.name} {item.postedBy._id==state._id && 
-                    <i className="material-icons" onClick={()=>{deletePost(item._id)}} style={{float:"right"}}>delete</i>}</h5>
+                            <h5><Link to={item.postedBy._id!==state._id?"/profile/"+item.postedBy._id:"/profile"}>{item.postedBy.name}</Link> {item.postedBy._id==state._id && 
+                            <i className="material-icons" onClick={()=>{deletePost(item._id)}} style={{float:"right"}}>delete</i>}</h5>
                             <div className="card-image">
                                 <img src={item.photo}/>
                             </div>
                             <div className="card-content">
-                            <i className="material-icons" style={{color:"red"}}>favorite</i>
+                            {/* <i className="material-icons" style={{color:"red"}}>favorite</i> */}
                             {item.likes.includes(state._id)?
                             <i className="material-icons" onClick={()=>unlikePost(item._id)}>thumb_down</i>:
                             <i className="material-icons" onClick={()=>{likePost(item._id)}}>thumb_up</i>
